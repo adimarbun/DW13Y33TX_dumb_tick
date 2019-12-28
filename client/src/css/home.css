@@ -1,0 +1,10 @@
+.category {
+  background-image: url("https://cdn.pixabay.com/photo/2016/11/30/20/58/programming-1873854_1280.png");
+  margin: 20px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2),
+    10px 10px 20px rgba(0, 0, 0, 0.19);
+  text-align: center;
+}
