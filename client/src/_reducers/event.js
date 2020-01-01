@@ -1,27 +1,25 @@
-import { GET_EVENTS } from "../config/constant";
-
+import { GET_EVENT_ID } from "../config/constant";
 
 const initialState = {
-  dataEvents: [],
-
+  event: [],
   isLoading: false,
   error: false
 };
 
-export const events = (state = initialState, action) => {
+export const event = (state = initialState, action) => {
   switch (action.type) {
-    case `${GET_EVENTS}_PENDING`:
+    case `${GET_EVENT_ID}_PENDING`:
       return {
         ...state,
         isLoading: true
       };
-    case `${GET_EVENTS}_FULFILLED`:
+    case `${GET_EVENT_ID}_FULFILLED`:
       return {
         ...state,
-        dataEvents: action.payload.data,
+        event: action.payload.data,
         isLoading: false
       };
-    case `${GET_EVENTS}_REJECTED`:
+    case `${GET_EVENT_ID}_REJECTED`:
       return {};
 
     default:

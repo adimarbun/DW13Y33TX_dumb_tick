@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       quantity: DataTypes.DECIMAL,
       totalPrice: DataTypes.DECIMAL,
       status: DataTypes.INTEGER,
+      orderBy: DataTypes.INTEGER,
       attachment: DataTypes.STRING
     },
     {}
@@ -20,6 +21,11 @@ module.exports = (sequelize, DataTypes) => {
     orders.belongsTo(models.status, {
       foreignKey: "status",
       as: "statuses",
+      sourceKey: "id"
+    });
+    orders.belongsTo(models.status, {
+      foreignKey: "orderBy",
+      as: "users",
       sourceKey: "id"
     });
   };

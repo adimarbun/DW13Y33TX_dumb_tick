@@ -1,6 +1,7 @@
 const Events = require("../models").events;
 const Categories = require("../models").categories;
 const Users = require("../models").users;
+const { Op } = require("sequelize");
 
 //create events
 
@@ -60,7 +61,8 @@ exports.showEventsCategory = (req, res) => {
         attributes: ["id", "name", "noTelp", "email", "img"]
       }
     ],
-    where: { category: req.params.id }
+    where: { category: req.params.id },
+    order: [["createdAt", "DESC"]]
   }).then(data => res.send(data));
 };
 
@@ -84,7 +86,23 @@ exports.showEventById = (req, res) => {
       }
     ],
     where: { id: req.params.id }
-  }).then(data => res.send(data));
+  }).then(data =>
+    res.send({
+      id: data.id,
+      title: data.title,
+      startTime: data.startTime,
+      endTime: data.endTime,
+      price: data.price,
+      description: data.description,
+      address: data.address,
+      urlMaps: data.urlMaps,
+      img: data.img,
+      category: data.categories.name,
+      name: data.users.name,
+      noTelp: data.users.noTelp,
+      email: data.users.email
+    })
+  );
 };
 
 //show all event
@@ -105,7 +123,8 @@ exports.showEventAll = (req, res) => {
         as: "users",
         attributes: ["id", "name", "noTelp", "email", "img"]
       }
-    ]
+    ],
+    order: [["createdAt", "DESC"]]
   }).then(data => res.send(data));
 };
 

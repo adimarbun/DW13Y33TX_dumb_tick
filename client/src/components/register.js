@@ -37,7 +37,7 @@ class Register extends Component {
     };
 
     register(newUser).then(res => {
-      window.location = "/login";
+      window.location = "/";
     });
   }
   render() {
@@ -67,7 +67,6 @@ class Register extends Component {
             label="Your Email"
             name="email"
             autoComplete="email"
-            autoFocus
             value={this.state.email}
             onChange={this.onChange}
           />
@@ -103,7 +102,7 @@ class Register extends Component {
             required
             fullWidth
             id="noTelp"
-            label=" Your noTelp"
+            label=" Your Number Telephone"
             name="noTelp"
             autoComplete="current-noTelp"
             value={this.state.noTelp}

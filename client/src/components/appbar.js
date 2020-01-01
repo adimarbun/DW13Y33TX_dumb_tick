@@ -50,7 +50,6 @@ export default function MenuAppBar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
-  // const handleChange = event => {
   //   setAuth(event.target.checked);
   // };
   var token = localStorage.getItem("tokenn");
@@ -95,12 +94,11 @@ export default function MenuAppBar() {
   //clear local storage
   const signOut = () => {
     localStorage.clear();
-    window.location = "/login";
+    window.location = "/";
   };
 
   return (
     <div className={classes.root}>
-      <FormGroup></FormGroup>
       <AppBar position="static" color="secondary">
         <Toolbar>
           <IconButton
@@ -144,10 +142,13 @@ export default function MenuAppBar() {
                 onClose={handleClose}
               >
                 <div className={classes.dropDownMenu}>
-                  <MenuItem onClick={handleClose}>
-                    <PermIdentityIcon />
-                    <Typography>Profile</Typography>
-                  </MenuItem>
+                  <Link href="/profil" underline="none" color="inherit">
+                    <MenuItem>
+                      <PermIdentityIcon />
+                      <Typography>Profile</Typography>
+                    </MenuItem>
+                  </Link>
+
                   <MenuItem onClick={handleClose}>
                     <ConfirmationNumberIcon />
                     <Typography>My Ticket</Typography>
@@ -156,10 +157,12 @@ export default function MenuAppBar() {
                     <LocalAtmIcon />
                     <Typography>Payment</Typography>
                   </MenuItem>
-                  <MenuItem onClick={handleClose}>
-                    <EventIcon />
-                    <Typography>add Event</Typography>
-                  </MenuItem>
+                  <Link href="/addEvent" underline="none" color="inherit">
+                    <MenuItem onClick={handleClose}>
+                      <EventIcon />
+                      <Typography>add Event</Typography>
+                    </MenuItem>
+                  </Link>
                   <MenuItem onClick={signOut}>
                     <ExitToAppIcon />
                     <Typography>Logout</Typography>

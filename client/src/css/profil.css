@@ -1,0 +1,15 @@
+.personality {
+  margin: 10% 0 0 30%;
+}
+.edit-button {
+  margin: 30% 0 0 30%;
+}
+.gridfoto {
+  margin: 20%;
+}
+.foto {
+  background-color: blanchedalmond;
+  height: 300px;
+  width: 300px;
+  border-radius: 50%;
+}

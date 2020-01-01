@@ -7,6 +7,13 @@ exports.showAll = (req, res) => {
   );
 };
 
+exports.showCategory = (req, res) => {
+  Categories.findOne({
+    attributes: ["id", "name"],
+    where: { id: req.params.id }
+  }).then(data => res.send(data));
+};
+
 exports.store = (req, res) => {
   Categories.create(req.body).then(categories => {
     res.send({

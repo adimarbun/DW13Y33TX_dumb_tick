@@ -27,6 +27,11 @@ module.exports = (sequelize, DataTypes) => {
       as: "users",
       sourceKey: "id"
     });
+
+    // events.hasMany(models.favorites, {
+    //   foreignKey: "id",
+    //   as: "favorites"
+    // });
   };
   return events;
 };

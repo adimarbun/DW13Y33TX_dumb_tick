@@ -6,16 +6,17 @@ const Users = require("../models").users;
 
 //post order
 exports.postOrder = (req, res) => {
-  //   request = {
-  //     event: req.body.event,
-  //     quantity: req.body.quantity,
-  //     totalPrice: req.body.totalPrice,
-  //     status: req.body.status,
-  //     attachment: req.body.attachment
-  //   };
-  Orders.create(req.body).then(order => {
+  request = {
+    event: req.body.event,
+    quantity: req.body.quantity,
+    totalPrice: req.body.totalPrice,
+    status: req.body.status,
+    orderBy: userId,
+    attachment: req.body.attachment
+  };
+  Orders.create(request).then(order => {
     Orders.findOne({
-      attributes: ["id", "quantity", "totalPrice", "attachment"],
+      attributes: ["id", "quantity", "totalPrice", "attachment", "orderBy"],
       include: [
         {
           model: Events,

@@ -34,6 +34,16 @@ module.exports = {
         onUpdate: "cascade",
         onDelete: "cascade"
       },
+      orderBy: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: "users",
+          key: "id"
+        },
+        onUpdate: "cascade",
+        onDelete: "cascade"
+      },
       attachment: {
         type: Sequelize.STRING
       },

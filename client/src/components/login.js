@@ -48,7 +48,7 @@ class Login extends Component {
             fullWidth
             type="username"
             id="username"
-            value={this.state.email}
+            value={this.state.username}
             onChange={this.onChange}
             label="username"
             name="username"
