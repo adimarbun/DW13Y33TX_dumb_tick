@@ -9,6 +9,7 @@ import AddEvent from "./pages/addEvent";
 import CategoryDetail from "./pages/categoriesDetail";
 import Payment from "./pages/payment";
 import PaymentPending from "./pages/paymentPending";
+import MyTicket from "./pages/myTicket";
 
 function App() {
   return (
@@ -33,7 +34,9 @@ function App() {
           <Route path="/paymentPending">
             <PaymentPending />
           </Route>
-
+          <Route path="/myTicket">
+            <MyTicket />
+          </Route>
           <Route path="/">
             <Home />
           </Route>

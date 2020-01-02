@@ -231,7 +231,8 @@ exports.showOrderPending = (req, res) => {
         as: "users",
         attributes: ["id", "name", "noTelp", "email", "img"]
       }
-    ]
+    ],
+    order: [["createdAt", "DESC"]]
   }).then(data => {
     if (data) {
       res.send(data);
@@ -240,16 +241,57 @@ exports.showOrderPending = (req, res) => {
     }
   });
 };
-// exports.showOrderPending = (req, res) => {
-//   const status = 2;
-//   Orders.findAll({
-//     where: { status: status, orderBy: userId }
-//   }).then(data => {
-//     console.log(data.events);
-//     Events.findAll({
-//       where: {
-//         id: data.events
-//       }
-//     }).then(respon => res.send(data.event));
-//   });
-// };
+
+//show order status = approved
+
+exports.showOrderApproved = (req, res) => {
+  Orders.findAll({
+    where: { orderBy: userId, status: 3 },
+    attributes: [
+      "id",
+      "quantity",
+      "totalPrice",
+      "attachment",
+      "status",
+      "orderBy"
+    ],
+    include: [
+      {
+        model: Events,
+        as: "events",
+        attributes: {
+          exclude: ["createdAt", "updatedAt", "category", "createBy"]
+        },
+        include: [
+          {
+            model: Categories,
+            as: "categories",
+            attributes: ["id", "name"]
+          },
+          {
+            model: Users,
+            as: "users",
+            attributes: ["id", "name", "noTelp", "email", "img"]
+          }
+        ]
+      },
+      {
+        model: Status,
+        as: "statuses",
+        attributes: ["name"]
+      },
+      {
+        model: Users,
+        as: "users",
+        attributes: ["id", "name", "noTelp", "email", "img"]
+      }
+    ],
+    order: [["createdAt", "DESC"]]
+  }).then(data => {
+    if (data) {
+      res.send(data);
+    } else {
+      res.send({ message: "Not your Order" });
+    }
+  });
+};

@@ -48,6 +48,8 @@ app.group("/api/v1", router => {
   router.get("/order/:id", auth, OrdersController.showOrderById);
   //get order if stasus = pending
   router.get("/orderPending", auth, OrdersController.showOrderPending);
+  //get order if stasus = approved
+  router.get("/orderApproved", auth, OrdersController.showOrderApproved);
   //get user by id
   router.get("/profile/:id", UsersController.showUser);
   //get orders when status=approved

@@ -1,4 +1,8 @@
-import { GET_ORDER, GET_ORDER_PENDING } from "../config/constant";
+import {
+  GET_ORDER,
+  GET_ORDER_PENDING,
+  GET_ORDER_APPROVED
+} from "../config/constant";
 import axios from "axios";
 
 export const getOrder = order_id => {
@@ -16,6 +20,7 @@ export const getOrder = order_id => {
   };
 };
 
+//order status = pending
 export const getOrderPending = () => {
   const token = localStorage.getItem("tokenn");
   return {
@@ -23,6 +28,22 @@ export const getOrderPending = () => {
     payload: axios({
       method: "GET",
       url: "http://localhost:5000/api/v1/orderPending",
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+  };
+};
+
+//order status = approved
+
+export const getOrderApproved = () => {
+  const token = localStorage.getItem("tokenn");
+  return {
+    type: GET_ORDER_APPROVED,
+    payload: axios({
+      method: "GET",
+      url: "http://localhost:5000/api/v1/orderApproved",
       headers: {
         Authorization: `Bearer ${token}`
       }

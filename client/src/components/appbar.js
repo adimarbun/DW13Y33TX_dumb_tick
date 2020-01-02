@@ -149,11 +149,12 @@ export default function MenuAppBar() {
                       <Typography>Profile</Typography>
                     </MenuItem>
                   </Link>
-
-                  <MenuItem onClick={handleClose}>
-                    <ConfirmationNumberIcon />
-                    <Typography>My Ticket</Typography>
-                  </MenuItem>
+                  <Link href="/myTicket" underline="none" color="inherit">
+                    <MenuItem>
+                      <ConfirmationNumberIcon />
+                      <Typography>My Ticket</Typography>
+                    </MenuItem>
+                  </Link>
                   <Link href="/paymentPending" underline="none" color="inherit">
                     <MenuItem>
                       <LocalAtmIcon />

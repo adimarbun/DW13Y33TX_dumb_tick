@@ -56,10 +56,12 @@ class PaymentPending extends Component {
     console.log(dataOrderPending);
     // this.state.dataOrders = dataOrder.titleEvent;
     // let startTime = `"${dataOrderPending.events.startTime}"`;
+
     return (
       <div>
         <MenuAppBar />
         {dataOrderPending.map((item, index) => {
+          console.log(item.events.startTime);
           return (
             <Grid className="container">
               <Grid xs={6} className="payment">
@@ -83,7 +85,8 @@ class PaymentPending extends Component {
                       <Grid xs={10}>
                         <Typography>{item.events.title}</Typography>
                         <Typography>
-                          {/* {startTime.slice(1, 11)} at {startTime.slice(12, 17)} */}
+                          {item.events.startTime.slice(0, 10)} at{" "}
+                          {item.events.startTime.slice(11, 16)}
                         </Typography>
                         <Typography>{item.events.address}</Typography>
                       </Grid>
