@@ -6,6 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import Switch from "@material-ui/core/Switch";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormGroup from "@material-ui/core/FormGroup";
@@ -18,11 +19,12 @@ import Login from "./login";
 import Register from "./register";
 import Backdrop from "@material-ui/core/Backdrop";
 import PermIdentityIcon from "@material-ui/icons/PermIdentity";
-import ConfirmationNumberIcon from "@material-ui/icons/ConfirmationNumber";
 import LocalAtmIcon from "@material-ui/icons/LocalAtm";
 import EventIcon from "@material-ui/icons/Event";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import Link from "@material-ui/core/Link";
+import Paper from "@material-ui/core/Paper";
+import ConfirmationNumberIcon from "@material-ui/icons/ConfirmationNumber";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -41,7 +43,14 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "center"
   },
   dropDownMenu: {
-    width: "200px"
+    width: "250px"
+  },
+  menuText: {
+    marginLeft: "10px",
+    fontSize: "20px"
+  },
+  menu: {
+    margin: "10px"
   }
 }));
 
@@ -50,9 +59,7 @@ export default function MenuAppBar() {
   // const auth = true;
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-
   //   setAuth(event.target.checked);
-  // };
   var token = localStorage.getItem("tokenn");
   var auth = false;
   if (token === null) {
@@ -60,38 +67,28 @@ export default function MenuAppBar() {
   } else {
     auth = true;
   }
-
   const handleMenu = event => {
     setAnchorEl(event.currentTarget);
   };
-
   const handleClose = () => {
     setAnchorEl(null);
   };
-
   //handle Modal login
-
   const [openModal, setOpenModal] = React.useState(false);
-
   const handleOpenModal = () => {
     setOpenModal(true);
   };
-
   const handleCloseModal = () => {
     setOpenModal(false);
   };
   //handle Modal register
-
   const [openModalRegister, setOpenModalRegister] = React.useState(false);
-
   const handleOpenModalRegister = () => {
     setOpenModalRegister(true);
   };
-
   const handleCloseModalRegister = () => {
     setOpenModalRegister(false);
   };
-
   //clear local storage
   const signOut = () => {
     localStorage.clear();
@@ -102,6 +99,7 @@ export default function MenuAppBar() {
     <div className={classes.root}>
       <AppBar position="static" color="secondary" style={{ padding: "10px 0" }}>
         <Toolbar>
+          <ConfirmationNumberIcon style={{ fontSize: "50px" }} />
           <IconButton
             edge="start"
             className={classes.menuButton}
@@ -143,33 +141,47 @@ export default function MenuAppBar() {
                 onClose={handleClose}
               >
                 <div className={classes.dropDownMenu}>
-                  <Link href="/profil" underline="none" color="inherit">
-                    <MenuItem>
-                      <PermIdentityIcon />
-                      <Typography>Profile</Typography>
-                    </MenuItem>
-                  </Link>
-                  <Link href="/myTicket" underline="none" color="inherit">
-                    <MenuItem>
-                      <ConfirmationNumberIcon />
-                      <Typography>My Ticket</Typography>
-                    </MenuItem>
-                  </Link>
-                  <Link href="/paymentPending" underline="none" color="inherit">
-                    <MenuItem>
-                      <LocalAtmIcon />
-                      <Typography>Payment</Typography>
-                    </MenuItem>
-                  </Link>
-                  <Link href="/addEvent" underline="none" color="inherit">
-                    <MenuItem>
-                      <EventIcon />
-                      <Typography>add Event</Typography>
-                    </MenuItem>
-                  </Link>
-                  <MenuItem onClick={signOut}>
-                    <ExitToAppIcon />
-                    <Typography>Logout</Typography>
+                  <Paper>
+                    <Link href="/profil" underline="none" color="inherit">
+                      <MenuItem className={classes.menu}>
+                        <AccountCircleIcon fontSize="large" />
+                        <Typography className={classes.menuText}>
+                          Profile
+                        </Typography>
+                      </MenuItem>
+                    </Link>
+                    <Link href="/myTicket" underline="none" color="inherit">
+                      <MenuItem className={classes.menu}>
+                        <ConfirmationNumberIcon fontSize="large" />
+                        <Typography className={classes.menuText}>
+                          My Ticket
+                        </Typography>
+                      </MenuItem>
+                    </Link>
+                    <Link
+                      href="/paymentPending"
+                      underline="none"
+                      color="inherit"
+                    >
+                      <MenuItem className={classes.menu}>
+                        <LocalAtmIcon fontSize="large" />
+                        <Typography className={classes.menuText}>
+                          Payment
+                        </Typography>
+                      </MenuItem>
+                    </Link>
+                    <Link href="/addEvent" underline="none" color="inherit">
+                      <MenuItem className={classes.menu}>
+                        <EventIcon fontSize="large" />
+                        <Typography className={classes.menuText}>
+                          add Event
+                        </Typography>
+                      </MenuItem>
+                    </Link>
+                  </Paper>
+                  <MenuItem onClick={signOut} className={classes.menu}>
+                    <ExitToAppIcon fontSize="large" />
+                    <Typography className={classes.menuText}>Logout</Typography>
                   </MenuItem>
                 </div>
               </Menu>

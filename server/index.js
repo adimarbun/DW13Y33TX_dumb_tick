@@ -40,6 +40,8 @@ app.group("/api/v1", router => {
   router.get("/events", EventsController.showEventAll);
   //show events title
   router.get("/event/", EventsController.showEventTitle);
+  //show events upcoming
+  router.get("/upComing", EventsController.upcoming);
   //post order
   router.post("/order", auth, OrdersController.postOrder);
   //update order

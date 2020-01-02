@@ -7,7 +7,7 @@ export const getEvents = () => {
     type: GET_EVENTS,
     payload: axios({
       method: "GET",
-      url: "http://localhost:5000/api/v1/events"
+      url: "http://localhost:5000/api/v1/upComing"
     })
   };
 };

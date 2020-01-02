@@ -32,9 +32,7 @@ class Home extends Component {
   // FAVORITES
   onClick = item_id => event => {
     event.preventDefault();
-
     const token = localStorage.getItem("tokenn");
-
     alert("you like event");
     Axios({
       method: "post",
@@ -57,7 +55,6 @@ class Home extends Component {
     this.props.getCategories();
     this.props.getEvents();
   }
-
   renderEvent = event => {
     return (
       <Card

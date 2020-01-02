@@ -3,6 +3,7 @@ const Categories = require("../models").categories;
 const Users = require("../models").users;
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
+const Helper = require("../helper/helper");
 
 //create events
 
@@ -154,86 +155,101 @@ exports.showEventTitle = (req, res) => {
   }).then(data => res.send(data));
 };
 
-////today
+//today
 
-// exports.today = (req, res) => {
-//   let message = "";
+exports.upcoming = (req, res) => {
+  let message = "";
 
-//   Events.findAll({
-//     attributes: {
-//       exclude: ["category_id", "creator_user_id", "createdAt", "updatedAt"]
-//     },
-//     include: [
-//       {
-//         model: Category,
-//         as: "category",
-//         attributes: {
-//           exclude: ["createdAt", "updatedAt"]
-//         }
-//       },
-//       {
-//         model: User,
-//         as: "user",
-//         attributes: {
-//           exclude: ["password", "createdAt", "updatedAt"]
-//         }
-//       }
-//     ],
-//     where: {
-//       start_time: {
-//         [Op.substring]: Helper.getDateToday()
-//       }
-//       // start_time: today
-//     }
-//   })
-//     .then(data => {
-//       if (!data.length) {
-//         message = "Data Not found";
-//         // data = {}
-//         res.status(200).json(data);
-//       } else {
-//         res.status(200).json(data);
-//       }
-//     })
-//     .catch(error => {
-//       message = "Bad request";
-//       res.status(400).json({ message });
-//     });
-// };
+  let today = new Date();
+  let dd = String(today.getDate()).padStart(2, "0");
+  let mm = String(today.getMonth() + 1).padStart(2, "0");
+  let yyyy = today.getFullYear();
+
+  finaltoday = yyyy + "-" + mm + "-" + dd;
+  console.log(finaltoday);
+
+  Events.findAll({
+    attributes: {
+      exclude: ["category", "createdAt", "updatedAt"]
+    },
+    include: [
+      {
+        model: Categories,
+        as: "categories",
+        attributes: {
+          exclude: ["createdAt", "updatedAt"]
+        }
+      },
+      {
+        model: Users,
+        as: "users",
+        attributes: {
+          exclude: ["password", "createdAt", "updatedAt"]
+        }
+      }
+    ],
+    order: [["startTime", "ASC"]],
+    where: {
+      startTime: {
+        [Op.gt]: finaltoday
+      }
+    }
+  })
+    .then(data => {
+      if (data.length === null) {
+        res.status(200).json({ message: "Data Not found" });
+      } else {
+        res.status(200).json(data);
+      }
+    })
+    .catch(error => {
+      message = "Bad request";
+      res.status(400).json({ message });
+    });
+};
+
+//events upcomming
 
 // exports.upcoming = (req, res) => {
 //   let message = "";
-//   let date = Helper.getNextDateFromToday();
+
+//   let today = new Date();
+//   let dd = String(today.getDate()).padStart(2, "0");
+//   let mm = String(today.getMonth() + 1).padStart(2, "0");
+//   let yyyy = today.getFullYear();
+
+//   finaltoday = yyyy + "-" + mm + "-" + dd;
+//   console.log(finaltoday);
 
 //   Events.findAll({
 //     attributes: {
-//       exclude: ["category_id", "creator_user_id", "createdAt", "updatedAt"]
+//       exclude: ["category", "createdAt", "updatedAt"]
 //     },
 //     include: [
 //       {
-//         model: Category,
-//         as: "category",
+//         model: Categories,
+//         as: "categories",
 //         attributes: {
 //           exclude: ["createdAt", "updatedAt"]
 //         }
 //       },
 //       {
-//         model: User,
-//         as: "user",
+//         model: Users,
+//         as: "users",
 //         attributes: {
 //           exclude: ["password", "createdAt", "updatedAt"]
 //         }
 //       }
 //     ],
 //     where: {
-//       start_time: {
-//         [Op.gt]: date
+//       startTime: {
+//         [Op.gt]: finaltoday
 //       }
 //     }
 //   })
 //     .then(data => {
-//       if (!data.length) {
-//         res.status(200).json(data);
+//       if (data.length === null) {
+//         res.status(200).json({ message: "Data Not found" });
 //       } else {
 //         res.status(200).json(data);
 //       }

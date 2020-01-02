@@ -18,6 +18,13 @@ class MyTicket extends Component {
     return (
       <div>
         <MenuAppBar />
+        <Typography
+          variant="h2"
+          color="secondary"
+          style={{ margin: "40px 10% 0 10%" }}
+        >
+          My Ticket
+        </Typography>
         <Grid className="container">
           <Paper style={{ margin: "100px 0" }}>
             {dataOrderApproved.map((item, index) => {
