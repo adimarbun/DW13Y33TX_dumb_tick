@@ -35,19 +35,19 @@ export const login = user => {
     });
 };
 
-//
-export const addEvent = newEvent => {
-  return axios
-    .post("http://localhost:5000/api/v1/event", {
-      title: newEvent.title,
-      category: newEvent.category,
-      startTime: newEvent.startTime,
-      endTime: newEvent.endTime,
-      price: newEvent.price,
-      description: newEvent.description,
-      address: newEvent.address,
-      urlMaps: newEvent.urlMaps,
-      img: newEvent.img
-    })
-    .then();
-};
+
+// export const addEvent = newEvent => {
+//   return axios
+//     .post("http://localhost:5000/api/v1/event", {
+//       title: newEvent.title,
+//       category: newEvent.category,
+//       startTime: newEvent.startTime,
+//       endTime: newEvent.endTime,
+//       price: newEvent.price,
+//       description: newEvent.description,
+//       address: newEvent.address,
+//       urlMaps: newEvent.urlMaps,
+//       img: newEvent.img
+//     })
+//     .then();
+// };

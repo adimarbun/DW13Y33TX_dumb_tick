@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
       as: "statuses",
       sourceKey: "id"
     });
-    orders.belongsTo(models.status, {
+    orders.belongsTo(models.users, {
       foreignKey: "orderBy",
       as: "users",
       sourceKey: "id"

@@ -9,7 +9,10 @@ import WatchLaterIcon from "@material-ui/icons/WatchLater";
 import AssignmentIndIcon from "@material-ui/icons/AssignmentInd";
 import CallIcon from "@material-ui/icons/Call";
 import EmailIcon from "@material-ui/icons/Email";
+import AddIcon from "@material-ui/icons/Add";
+import RemoveIcon from "@material-ui/icons/Remove";
 import React, { Component } from "react";
+import "../css/home.css";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { getEvent } from "../_actions/event";
@@ -23,9 +26,53 @@ import {
   Divider,
   Grid
 } from "@material-ui/core";
+import Axios from "axios";
+
 class EventsDetail extends Component {
-  state = {
-    category: []
+  constructor(props) {
+    super(props);
+    this.state = {
+      price: 0,
+      event: "",
+      quantity: 1,
+      totalPrice: "",
+      status: 2,
+      attachment: ""
+    };
+  }
+
+  IncrementItem = () => {
+    this.setState({ quantity: this.state.quantity + 1 });
+  };
+  DecreaseItem = () => {
+    this.setState({ quantity: this.state.quantity - 1 });
+  };
+
+  onSubmit = event => {
+    event.preventDefault();
+
+    const token = localStorage.getItem("tokenn");
+    const data = {
+      event: this.state.event,
+      quantity: this.state.quantity,
+      totalPrice: this.state.price * this.state.quantity,
+      status: this.state.status,
+      attachment: this.state.attachment
+    };
+
+    console.log(data);
+    Axios({
+      method: "post",
+      url: "http://localhost:5000/api/v1/order",
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+      data
+    }).then(response => {
+      // this.setState({ data: response.data });
+      window.location = "/order/" + response.data.id;
+      console.log(response.data);
+    });
   };
 
   componentDidMount() {
@@ -35,100 +82,119 @@ class EventsDetail extends Component {
     const { event } = this.props.event;
     let startDate = `"${event.startTime}"`;
     let endDate = `"${event.endTime}"`;
-    console.log(event.name);
+    this.state.event = event.id;
+    this.state.price = event.price;
 
     return (
       <div>
         <MenuAppBar />
         <Container style={{ marginTop: "50px" }}>
-          <Card>
+          <Grid className="eventDetail">
             <CardMedia
               component="img"
               alt={event.title}
-              height="300"
+              height="600"
               image={event.img}
               title={event.title}
             />
             <CardContent>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center"
-                }}
-              >
-                <Typography variant="h4" color="inherit">
-                  {event.title}
-                </Typography>
-                <Typography variant="h4" color="secondary">
-                  Rp.{event.price}
-                </Typography>
-              </div>
-              <Grid container>
-                <Grid xs={9}>
-                  <Typography>{event.category}</Typography>
-                </Grid>
-                <Grid xs={2}>dd</Grid>
-                <Grid>
-                  <Button variant="contained" color="secondary">
-                    Buy
-                  </Button>
-                </Grid>
-              </Grid>
-              <Typography
-                variant="body1"
-                style={{ marginTop: "30px", marginBottom: "10px" }}
-              ></Typography>
-              <Divider />
-              <Grid container>
-                <Grid xs={4}>
-                  <Grid>
-                    <Typography variant="h4" style={{ marginBottom: "20px" }}>
-                      Hosted By
+              <form noValidate onSubmit={this.onSubmit}>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center"
+                  }}
+                >
+                  <Typography variant="h4" color="inherit">
+                    {event.title}
+                  </Typography>
+                  <Typography variant="h4" color="secondary">
+                    Rp.{event.price}
+                  </Typography>
+                </div>
+                <Grid container>
+                  <Grid xs={9}>
+                    <Typography>{event.category}</Typography>
+                  </Grid>
+                  <Grid xs={2} container>
+                    <Button onClick={this.DecreaseItem} variant="outlined">
+                      <RemoveIcon />
+                    </Button>
+                    <Typography variant="h4" style={{ margin: "0 10px" }}>
+                      {this.state.quantity}
                     </Typography>
+                    <Button onClick={this.IncrementItem} variant="outlined">
+                      <AddIcon />
+                    </Button>
+                  </Grid>
+                  <Grid>
+                    <Button variant="contained" color="secondary" type="submit">
+                      Buy
+                    </Button>
                   </Grid>
                 </Grid>
-                <Grid xs={4}>
-                  <Grid>
-                    <Typography variant="h4" style={{ marginBottom: "20px" }}>
-                      Date & Time
-                    </Typography>
-                    <Grid container>
-                      <EventIcon fontSize="large" />
-                      <Typography variant="h6">
-                        {startDate.slice(1, 11)}-{endDate.slice(1, 11)}
+                <Typography
+                  variant="body1"
+                  style={{ marginTop: "30px", marginBottom: "10px" }}
+                ></Typography>
+                <Divider />
+                <Grid container style={{ marginTop: "40px" }}>
+                  <Grid xs={4}>
+                    <Grid>
+                      <Typography variant="h4" style={{ marginBottom: "20px" }}>
+                        Hosted By
                       </Typography>
+                      <Grid container>
+                        <img src={event.userImage} width="80px"></img>
+                        <Typography variant="h5" style={{ margin: "20px 5px" }}>
+                          {event.name}
+                        </Typography>
+                      </Grid>
                     </Grid>
-                    <Grid container>
-                      <WatchLaterIcon fontSize="large" />
-                      <Typography variant="h6">
-                        {startDate.slice(12, 17)}-{endDate.slice(12, 17)} WIB
+                  </Grid>
+                  <Grid xs={4}>
+                    <Grid>
+                      <Typography variant="h4" style={{ marginBottom: "20px" }}>
+                        Date & Time
                       </Typography>
+                      <Grid container style={{ marginBottom: "20px" }}>
+                        <EventIcon fontSize="large" />
+                        <Typography variant="h6">
+                          {startDate.slice(1, 11)}-{endDate.slice(1, 11)}
+                        </Typography>
+                      </Grid>
+                      <Grid container>
+                        <WatchLaterIcon fontSize="large" />
+                        <Typography variant="h6">
+                          {startDate.slice(12, 17)}-{endDate.slice(12, 17)} WIB
+                        </Typography>
+                      </Grid>
+                    </Grid>
+                  </Grid>
+                  <Grid xs={4}>
+                    <Grid>
+                      <Typography variant="h4" style={{ marginBottom: "20px" }}>
+                        Contact Person
+                      </Typography>
+                      <Grid container>
+                        <AssignmentIndIcon fontSize="large" />
+                        <Typography variant="h6">{event.name}</Typography>
+                      </Grid>
+                      <Grid container style={{ margin: "20px 0" }}>
+                        <CallIcon fontSize="large" />
+                        <Typography variant="h6">{event.noTelp}</Typography>
+                      </Grid>
+                      <Grid container>
+                        <EmailIcon fontSize="large" />
+                        <Typography variant="h6">{event.email}</Typography>
+                      </Grid>
                     </Grid>
                   </Grid>
                 </Grid>
-                <Grid xs={4}>
-                  <Grid>
-                    <Typography variant="h4" style={{ marginBottom: "20px" }}>
-                      Contact Person
-                    </Typography>
-                    <Grid container>
-                      <AssignmentIndIcon fontSize="large" />
-                      <Typography variant="h6">{event.name}</Typography>
-                    </Grid>
-                    <Grid container>
-                      <CallIcon fontSize="large" />
-                      <Typography variant="h6">{event.noTelp}</Typography>
-                    </Grid>
-                    <Grid container>
-                      <EmailIcon fontSize="large" />
-                      <Typography variant="h6">{event.email}</Typography>
-                    </Grid>
-                  </Grid>
-                </Grid>
-              </Grid>
+              </form>
             </CardContent>
-          </Card>
+          </Grid>
           <Grid container>
             <Grid xs={6}>
               <div style={{ margin: "40px", textAlign: "justify" }}>
@@ -144,7 +210,7 @@ class EventsDetail extends Component {
                   {event.address}
                 </p>
                 <div>
-                  <img src="https://jakartabytrain.files.wordpress.com/2013/05/gelora-bung-karno-main-stadium-map.jpg"></img>
+                  <iframe src={event.urlMaps} width="400" height="300"></iframe>
                 </div>
                 <Typography style={{ margin: "10% 0" }} variant="h4">
                   Share Event

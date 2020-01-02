@@ -20,3 +20,17 @@
   margin-bottom: 100px;
   width: 500px;
 }
+
+.form-edit {
+  width: 50%;
+  margin: 10px 20%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-image: linear-gradient(
+    rgb(235, 28, 62),
+    hsl(0, 23%, 91%),
+    hsl(355, 73%, 46%)
+  );
+  padding: 50px;
+}

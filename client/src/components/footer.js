@@ -12,7 +12,7 @@ class Footer extends Component {
           <div className="gridfooter">
             <Typography variant="h6">
               Tiketku is web-based paltform that provides tickets for varius
-              events around sports,music,science,programming,and ext
+              events around sports,music,science,programming
             </Typography>
           </div>
         </Grid>

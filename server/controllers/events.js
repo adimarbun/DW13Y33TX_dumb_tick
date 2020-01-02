@@ -1,7 +1,8 @@
 const Events = require("../models").events;
 const Categories = require("../models").categories;
 const Users = require("../models").users;
-const { Op } = require("sequelize");
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 
 //create events
 
@@ -100,7 +101,8 @@ exports.showEventById = (req, res) => {
       category: data.categories.name,
       name: data.users.name,
       noTelp: data.users.noTelp,
-      email: data.users.email
+      email: data.users.email,
+      userImage: data.users.img
     })
   );
 };
@@ -151,3 +153,93 @@ exports.showEventTitle = (req, res) => {
     where: { title: title }
   }).then(data => res.send(data));
 };
+
+////today
+
+// exports.today = (req, res) => {
+//   let message = "";
+
+//   Events.findAll({
+//     attributes: {
+//       exclude: ["category_id", "creator_user_id", "createdAt", "updatedAt"]
+//     },
+//     include: [
+//       {
+//         model: Category,
+//         as: "category",
+//         attributes: {
+//           exclude: ["createdAt", "updatedAt"]
+//         }
+//       },
+//       {
+//         model: User,
+//         as: "user",
+//         attributes: {
+//           exclude: ["password", "createdAt", "updatedAt"]
+//         }
+//       }
+//     ],
+//     where: {
+//       start_time: {
+//         [Op.substring]: Helper.getDateToday()
+//       }
+//       // start_time: today
+//     }
+//   })
+//     .then(data => {
+//       if (!data.length) {
+//         message = "Data Not found";
+//         // data = {}
+//         res.status(200).json(data);
+//       } else {
+//         res.status(200).json(data);
+//       }
+//     })
+//     .catch(error => {
+//       message = "Bad request";
+//       res.status(400).json({ message });
+//     });
+// };
+
+// exports.upcoming = (req, res) => {
+//   let message = "";
+//   let date = Helper.getNextDateFromToday();
+
+//   Events.findAll({
+//     attributes: {
+//       exclude: ["category_id", "creator_user_id", "createdAt", "updatedAt"]
+//     },
+//     include: [
+//       {
+//         model: Category,
+//         as: "category",
+//         attributes: {
+//           exclude: ["createdAt", "updatedAt"]
+//         }
+//       },
+//       {
+//         model: User,
+//         as: "user",
+//         attributes: {
+//           exclude: ["password", "createdAt", "updatedAt"]
+//         }
+//       }
+//     ],
+//     where: {
+//       start_time: {
+//         [Op.gt]: date
+//       }
+//     }
+//   })
+//     .then(data => {
+//       if (!data.length) {
+//         res.status(200).json(data);
+//       } else {
+//         res.status(200).json(data);
+//       }
+//     })
+//     .catch(error => {
+//       message = "Bad request";
+//       res.status(400).json({ message });
+//     });
+// };

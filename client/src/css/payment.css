@@ -1,0 +1,25 @@
+.container {
+  margin: 0 10%;
+}
+.payment {
+  background-color: tomato;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70px;
+}
+.gridContainer {
+  margin: 0px 10%;
+  padding-top: 10%;
+}
+.gridTicket {
+  border: 20px solid tomato;
+}
+.gridBarcode {
+  margin: 20px;
+}
+.prove {
+  border-top: 3px solid #a9a9a9;
+  padding: 20px 0;
+}

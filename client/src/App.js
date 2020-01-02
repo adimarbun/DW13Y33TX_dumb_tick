@@ -7,6 +7,9 @@ import EventsDetail from "./pages/eventDetail";
 import Profil from "./pages/profil";
 import AddEvent from "./pages/addEvent";
 import CategoryDetail from "./pages/categoriesDetail";
+import Payment from "./pages/payment";
+import PaymentPending from "./pages/paymentPending";
+
 function App() {
   return (
     <div style={{ backgroundColor: "	#FFE4E1" }}>
@@ -24,6 +27,13 @@ function App() {
           <Route path="/category/:id/events">
             <CategoryDetail />
           </Route>
+          <Route path="/order/:idOrder">
+            <Payment />
+          </Route>
+          <Route path="/paymentPending">
+            <PaymentPending />
+          </Route>
+
           <Route path="/">
             <Home />
           </Route>

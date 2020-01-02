@@ -127,3 +127,129 @@ exports.showOrders = (req, res) => {
     ]
   }).then(data => res.send(data));
 };
+
+exports.showOrderById = (req, res) => {
+  Orders.findOne({
+    where: { id: req.params.id, orderBy: userId },
+    attributes: [
+      "id",
+      "quantity",
+      "totalPrice",
+      "attachment",
+      "status",
+      "orderBy"
+    ],
+    include: [
+      {
+        model: Events,
+        as: "events",
+        attributes: {
+          exclude: ["createdAt", "updatedAt", "category", "createBy"]
+        },
+        include: [
+          {
+            model: Categories,
+            as: "categories",
+            attributes: ["id", "name"]
+          },
+          {
+            model: Users,
+            as: "users",
+            attributes: ["id", "name", "noTelp", "email", "img"]
+          }
+        ]
+      },
+      {
+        model: Status,
+        as: "statuses",
+        attributes: ["name"]
+      },
+      {
+        model: Users,
+        as: "users",
+        attributes: ["id", "name", "noTelp", "email", "img"]
+      }
+    ]
+  }).then(data => {
+    if (data) {
+      res.send({
+        titleEvent: data.events.title,
+        startTime: data.events.startTime,
+        price: data.events.price,
+        address: data.events.address,
+        quantity: data.quantity,
+        totalPrice: data.totalPrice,
+        statusId: data.status,
+        status: data.statuses.name,
+        user: data.users.name
+      });
+    } else {
+      res.send({ message: "Not your Order" });
+    }
+  });
+};
+
+//show order is status = pending && orderBy=userId
+exports.showOrderPending = (req, res) => {
+  Orders.findAll({
+    where: { orderBy: userId, status: 2 },
+    attributes: [
+      "id",
+      "quantity",
+      "totalPrice",
+      "attachment",
+      "status",
+      "orderBy"
+    ],
+    include: [
+      {
+        model: Events,
+        as: "events",
+        attributes: {
+          exclude: ["createdAt", "updatedAt", "category", "createBy"]
+        },
+        include: [
+          {
+            model: Categories,
+            as: "categories",
+            attributes: ["id", "name"]
+          },
+          {
+            model: Users,
+            as: "users",
+            attributes: ["id", "name", "noTelp", "email", "img"]
+          }
+        ]
+      },
+      {
+        model: Status,
+        as: "statuses",
+        attributes: ["name"]
+      },
+      {
+        model: Users,
+        as: "users",
+        attributes: ["id", "name", "noTelp", "email", "img"]
+      }
+    ]
+  }).then(data => {
+    if (data) {
+      res.send(data);
+    } else {
+      res.send({ message: "Not your Order" });
+    }
+  });
+};
+// exports.showOrderPending = (req, res) => {
+//   const status = 2;
+//   Orders.findAll({
+//     where: { status: status, orderBy: userId }
+//   }).then(data => {
+//     console.log(data.events);
+//     Events.findAll({
+//       where: {
+//         id: data.events
+//       }
+//     }).then(respon => res.send(data.event));
+//   });
+// };

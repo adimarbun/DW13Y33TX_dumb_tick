@@ -168,7 +168,12 @@ class Home extends Component {
                 <Grid className="category">
                   <Button
                     href={"/category/" + item.id + "/events"}
-                    style={{ color: "white", fontWeight: "bold" }}
+                    style={{
+                      color: "white",
+                      fontWeight: "bold",
+                      padding: "12px 0",
+                      fontSize: "20px"
+                    }}
                   >
                     {item.name}
                   </Button>

@@ -5,3 +5,5 @@ export const GET_USERS = "GET_USERS";
 export const GET_EVENT_ID = "GET_EVENT_ID";
 export const GET_CATEGORY_EVENT = "GET_CATEGORY_EVENT";
 export const GET_FAVORITES = "GET_FAVORITES";
+export const GET_ORDER = "GET_ORDER";
+export const GET_ORDER_PENDING = "GET_ORDER_PENDING";

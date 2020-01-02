@@ -29,7 +29,8 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1
   },
   menuButton: {
-    marginRight: theme.spacing(2)
+    marginRight: theme.spacing(2),
+    marginLeft: "50px"
   },
   title: {
     flexGrow: 1
@@ -99,7 +100,7 @@ export default function MenuAppBar() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" color="secondary">
+      <AppBar position="static" color="secondary" style={{ padding: "10px 0" }}>
         <Toolbar>
           <IconButton
             edge="start"
@@ -153,12 +154,14 @@ export default function MenuAppBar() {
                     <ConfirmationNumberIcon />
                     <Typography>My Ticket</Typography>
                   </MenuItem>
-                  <MenuItem onClick={handleClose}>
-                    <LocalAtmIcon />
-                    <Typography>Payment</Typography>
-                  </MenuItem>
+                  <Link href="/paymentPending" underline="none" color="inherit">
+                    <MenuItem>
+                      <LocalAtmIcon />
+                      <Typography>Payment</Typography>
+                    </MenuItem>
+                  </Link>
                   <Link href="/addEvent" underline="none" color="inherit">
-                    <MenuItem onClick={handleClose}>
+                    <MenuItem>
                       <EventIcon />
                       <Typography>add Event</Typography>
                     </MenuItem>

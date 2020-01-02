@@ -22,6 +22,8 @@ app.group("/api/v1", router => {
   router.post("/register", AUTH.register);
   //show user
   router.get("/user", auth, UsersController.showUser);
+  //edit users
+  router.put("/user", auth, UsersController.updateUser);
   //get categories
   router.get("/categories", CategoriesController.showAll);
   //get categories
@@ -42,6 +44,10 @@ app.group("/api/v1", router => {
   router.post("/order", auth, OrdersController.postOrder);
   //update order
   router.put("/order/:id", auth, OrdersController.updateOrders);
+  //get order by id
+  router.get("/order/:id", auth, OrdersController.showOrderById);
+  //get order if stasus = pending
+  router.get("/orderPending", auth, OrdersController.showOrderPending);
   //get user by id
   router.get("/profile/:id", UsersController.showUser);
   //get orders when status=approved

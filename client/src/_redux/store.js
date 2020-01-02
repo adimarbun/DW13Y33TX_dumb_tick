@@ -6,6 +6,7 @@ import { users } from "../_reducers/users";
 import { event } from "../_reducers/event";
 import { favorites } from "../_reducers/favorites";
 import { categoryEvent } from "../_reducers/categoryDetail";
+import { order, orderPending } from "../_reducers/orders";
 import { promise, logger } from "./middleware";
 
 const rootReducers = combineReducers({
@@ -15,7 +16,9 @@ const rootReducers = combineReducers({
   event,
   categoryEvent,
   category,
-  favorites
+  favorites,
+  order,
+  orderPending
 });
 
 const store = createStore(rootReducers, applyMiddleware(promise, logger));

@@ -52,9 +52,7 @@ class AddEvent extends Component {
       urlMaps: this.state.urlMaps,
       img: this.state.img
     };
-    console.log(data);
 
-    console.log(token);
     Axios({
       method: "post",
       url: "http://localhost:5000/api/v1/event",
@@ -76,8 +74,10 @@ class AddEvent extends Component {
     return (
       <div>
         <MenuAppBar />
-
-        <Grid style={{ margin: "10% 20%" }}>
+        <Grid style={{ textAlign: "center", marginTop: "30px" }}>
+          <Typography variant="h3">Add New Event</Typography>
+        </Grid>
+        <Grid style={{ margin: "5% 20%" }}>
           <form noValidate onSubmit={this.onSubmit}>
             <Typography>Title</Typography>
             <TextField
@@ -167,9 +167,11 @@ class AddEvent extends Component {
               onChange={this.onChange}
               placeholder="Your image"
             />
-            <Button type="submit" variant="contained" color="primary">
-              Add Event
-            </Button>
+            <Grid style={{ textAlign: "center", margin: "50px" }}>
+              <Button type="submit" variant="contained" color="primary">
+                Add Event
+              </Button>
+            </Grid>
           </form>
         </Grid>
         <Footer />
