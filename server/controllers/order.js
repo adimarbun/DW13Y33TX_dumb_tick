@@ -181,7 +181,8 @@ exports.showOrderById = (req, res) => {
         totalPrice: data.totalPrice,
         statusId: data.status,
         status: data.statuses.name,
-        user: data.users.name
+        user: data.users.name,
+        userId: data.users.id
       });
     } else {
       res.send({ message: "Not your Order" });

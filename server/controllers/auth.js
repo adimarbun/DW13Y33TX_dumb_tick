@@ -30,8 +30,9 @@ exports.login = (req, res) => {
 
 exports.register = (req, res) => {
   Users.create(req.body).then(user => {
-    const token = jwt.sign({ id: user.id }, "thisismysecretkey");
+    const token = jwt.sign({ user }, "thisismysecretkey");
     res.send({
+      userId: user.id,
       message: "success",
       email: user.email,
       token

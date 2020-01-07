@@ -5,7 +5,7 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 var cors = require("cors");
-const port = 5000;
+const port = process.env.PORT || 5000;
 app.use(bodyParser.json());
 app.use(cors());
 const AUTH = require("./controllers/auth");
