@@ -5,6 +5,7 @@
 .category {
   background-image: url("https://cdn.pixabay.com/photo/2017/11/24/10/43/admission-2974645_1280.jpg");
   margin: 40px 3%;
+  flex: 1;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

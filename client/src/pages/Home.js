@@ -55,6 +55,7 @@ class Home extends Component {
     this.props.getCategories();
     this.props.getEvents();
   }
+
   renderEvent = event => {
     return (
       <Card
@@ -159,7 +160,7 @@ class Home extends Component {
             <SearchIcon />
           </div>
           <Typography variant="h3">Category</Typography>
-          <Grid container>
+          <Grid container style={{ margin: " 0 -2%" }}>
             {dataCategories.map((item, index) => {
               return (
                 <Grid className="category">

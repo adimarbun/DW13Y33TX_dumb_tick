@@ -35,13 +35,13 @@ class MyTicket extends Component {
                     <Grid container style={{ backgroundColor: "#A9A9A9" }}>
                       <Grid xs={8} style={{ marginLeft: "20px" }}>
                         <Typography variant="h5">{item.users.name}</Typography>
-                        <Typography>id.users</Typography>
+                        <Typography>id.{item.users.id}</Typography>
                       </Grid>
                       <Grid xs={3} style={{ textAlign: "right" }}>
                         <Typography>
                           Face Value Rp.{item.events.price}
                         </Typography>
-                        <Typography>id.{item.statuses.name}</Typography>
+                        <Typography>status :{item.statuses.name}</Typography>
                       </Grid>
                     </Grid>
                     <Grid container className="gridBarcode">

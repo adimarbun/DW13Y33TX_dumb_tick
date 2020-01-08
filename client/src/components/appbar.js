@@ -108,7 +108,7 @@ export default function MenuAppBar() {
           >
             <Link href="/" variant="inherit" color="inherit" underline="none">
               <Typography variant="h5" style={{ fontWeight: "bold" }}>
-                TIKETKU
+                TIKET-KU
               </Typography>
             </Link>
           </IconButton>

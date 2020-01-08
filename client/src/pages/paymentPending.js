@@ -30,7 +30,7 @@ class PaymentPending extends Component {
       alert("thank you for you payment");
       Axios({
         method: "PUT",
-        url: `http://localhost:5000/api/v1/order/${orderId}`,
+        url: `https://api-tiket-ku.herokuapp.com/api/v1/order/${orderId}`,
         headers: {
           Authorization: `Bearer ${token}`
         },
@@ -60,25 +60,27 @@ class PaymentPending extends Component {
     return (
       <div>
         <MenuAppBar />
-        {dataOrderPending.map((item, index) => {
-          console.log(item.events.startTime);
-          return (
-            <Grid className="container">
-              <Grid xs={6} className="payment">
-                <Typography variant="h4">Payment</Typography>
-              </Grid>
-              <Paper style={{ marginBottom: "100px" }}>
+
+        <Grid className="container">
+          <Grid xs={6} className="payment">
+            <Typography variant="h4">Payment</Typography>
+          </Grid>
+
+          <Paper style={{ marginBottom: "100px" }}>
+            {dataOrderPending.map((item, index) => {
+              return (
                 <Grid className="gridContainer">
                   <Grid className="gridTicket">
                     <Grid container style={{ backgroundColor: "#A9A9A9" }}>
                       <Grid xs={8} style={{ marginLeft: "20px" }}>
                         <Typography variant="h5">{item.users.name}</Typography>
-                        <Typography>id.users</Typography>
+                        <Typography>id.{item.users.id}</Typography>
                       </Grid>
                       <Grid xs={3} style={{ textAlign: "right" }}>
                         <Typography>
                           Face Value Rp.{item.events.price}
                         </Typography>
+                        <Typography>Status {item.statuses.name}</Typography>
                       </Grid>
                     </Grid>
                     <Grid container className="gridBarcode">
@@ -96,47 +98,21 @@ class PaymentPending extends Component {
                           src="https://cdn.pixabay.com/photo/2013/07/13/10/25/qr-code-157182_960_720.png"
                         ></img>
                       </Grid>
-                    </Grid>
-                  </Grid>
-                  <Grid style={{ margin: "20px" }}>
-                    <Typography variant="h5">Shoping Summary</Typography>
-                    <Grid container>
-                      <Grid xs={10}>
-                        <Typography>
-                          Total Price ({item.quantity} Item )
-                        </Typography>
-                      </Grid>
-                      <Grid>
-                        <Typography>Rp.{item.totalPrice}</Typography>
-                      </Grid>
-                    </Grid>
-                  </Grid>
-                  <Grid className="prove">
-                    <Typography variant="h4">Prove of payment</Typography>
-                  </Grid>
-                  <Grid container style={{ paddingBottom: "50px" }}>
-                    <Grid xs={10}>
-                      <img
-                        width="150px"
-                        height="150px"
-                        src="https://i.ytimg.com/vi/EMK0_pVz_l4/maxresdefault.jpg"
-                      ></img>
-                    </Grid>
-                    <Grid xs={2}>
                       <Button
-                        onClick={this.onClick(item.id)}
+                        href={"/order/" + item.id}
                         variant="contained"
                         color="secondary"
                       >
-                        Confirm
+                        Check Out
                       </Button>
                     </Grid>
                   </Grid>
                 </Grid>
-              </Paper>
-            </Grid>
-          );
-        })}
+              );
+            })}
+          </Paper>
+        </Grid>
+
         <Footer />
       </div>
     );

@@ -38,6 +38,7 @@ class Payment extends Component {
           status: status_id
         }
       }).then(respons => {
+        window.location = "/";
         this.setState({
           status: respons.data
         });
@@ -70,10 +71,11 @@ class Payment extends Component {
                 <Grid container style={{ backgroundColor: "#A9A9A9" }}>
                   <Grid xs={8} style={{ marginLeft: "20px" }}>
                     <Typography variant="h5">{dataOrder.user}</Typography>
-                    <Typography>id.users</Typography>
+                    <Typography>id.{dataOrder.userId}</Typography>
                   </Grid>
                   <Grid xs={3} style={{ textAlign: "right" }}>
                     <Typography>Face Value Rp.{dataOrder.price}</Typography>
+                    <Typography>Status {dataOrder.status}</Typography>
                   </Grid>
                 </Grid>
                 <Grid container className="gridBarcode">

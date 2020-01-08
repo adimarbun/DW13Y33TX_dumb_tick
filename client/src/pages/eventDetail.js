@@ -45,7 +45,9 @@ class EventsDetail extends Component {
     this.setState({ quantity: this.state.quantity + 1 });
   };
   DecreaseItem = () => {
-    this.setState({ quantity: this.state.quantity - 1 });
+    this.setState({
+      quantity: this.state.quantity !== 0 ? (this.state.quantity -= 1) : 0
+    });
   };
 
   onSubmit = event => {
@@ -59,10 +61,9 @@ class EventsDetail extends Component {
       status: this.state.status,
       attachment: this.state.attachment
     };
-
-    console.log(data);
+    console.log("ini");
     Axios({
-      method: "post",
+      method: "POST",
       url: "http://localhost:5000/api/v1/order",
       headers: {
         Authorization: `Bearer ${token}`

@@ -65,6 +65,7 @@ class Register extends Component {
             fullWidth
             id="email"
             label="Your Email"
+            type="email"
             name="email"
             autoComplete="email"
             value={this.state.email}

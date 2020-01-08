@@ -168,7 +168,7 @@ class AddEvent extends Component {
               placeholder="Your image"
             />
             <Grid style={{ textAlign: "center", margin: "50px" }}>
-              <Button type="submit" variant="contained" color="primary">
+              <Button type="submit" variant="contained" color="secondary">
                 Add Event
               </Button>
             </Grid>

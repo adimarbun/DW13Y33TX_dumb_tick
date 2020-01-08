@@ -35,7 +35,6 @@ export const login = user => {
     });
 };
 
-
 // export const addEvent = newEvent => {
 //   return axios
 //     .post("http://localhost:5000/api/v1/event", {

@@ -181,6 +181,14 @@ class Profil extends Component {
                   <Grid>
                     <img src={this.state.fotoProfil} Width="300px"></img>
                   </Grid>
+                  <Button
+                    href="/profil"
+                    variant="contained"
+                    color="secondary"
+                    style={{ marginRight: "20px" }}
+                  >
+                    cancel
+                  </Button>
                   <Button type="submit" variant="contained" color="inherit">
                     save
                   </Button>
@@ -195,66 +203,72 @@ class Profil extends Component {
           </Grid>
         </Grid>
 
-        <Grid container>
-          {dataFavorites.map((data, index) => {
-            return (
-              <Card
-                style={{
-                  width: "400px",
-                  margin: "50px",
-                  textAlign: "justify",
-                  minHeight: "500px"
-                }}
-              >
-                <CardActionArea>
-                  <Button
-                    style={{
-                      position: "absolute",
-                      backgroundColor: "white",
-                      margin: " 10px 10px 0 290px"
-                    }}
-                  >
-                    Rp.{data.events.price}
-                  </Button>
-                  <CardMedia
-                    component="img"
-                    height="300"
-                    image={data.events.img}
-                  />
-                  <CardContent>
-                    <Grid container>
-                      <Grid xs="10">
-                        <Typography gutterBottom variant="h5" component="h2">
-                          {data.events.title.substring(0, 25) + "..."}
-                        </Typography>
-                      </Grid>
-                      <Grid>
-                        <Fab aria-label="like" color="secondary">
-                          <FavoriteIcon />
-                        </Fab>
-                      </Grid>
-                    </Grid>
-                    <Link
-                      underline="none"
-                      color="inherit"
-                      href={"/event/" + data.events.id}
+        <Grid>
+          <Typography style={{ marginLeft: "3%" }} variant="h3">
+            Favorit
+          </Typography>
+
+          <Grid container>
+            {dataFavorites.map((data, index) => {
+              return (
+                <Card
+                  style={{
+                    width: "400px",
+                    margin: "50px",
+                    textAlign: "justify",
+                    minHeight: "500px"
+                  }}
+                >
+                  <CardActionArea>
+                    <Button
+                      style={{
+                        position: "absolute",
+                        backgroundColor: "white",
+                        margin: " 10px 10px 0 290px"
+                      }}
                     >
-                      <Typography>
-                        {data.events.startTime.substring(0, 10)}
-                      </Typography>
-                      <Typography
-                        variant="body2"
-                        color="textSecondary"
-                        component="p"
+                      Rp.{data.events.price}
+                    </Button>
+                    <CardMedia
+                      component="img"
+                      height="300"
+                      image={data.events.img}
+                    />
+                    <CardContent>
+                      <Grid container>
+                        <Grid xs="10">
+                          <Typography gutterBottom variant="h5" component="h2">
+                            {data.events.title.substring(0, 25) + "..."}
+                          </Typography>
+                        </Grid>
+                        <Grid>
+                          <Fab aria-label="like" color="secondary">
+                            <FavoriteIcon />
+                          </Fab>
+                        </Grid>
+                      </Grid>
+                      <Link
+                        underline="none"
+                        color="inherit"
+                        href={"/event/" + data.events.id}
                       >
-                        {data.events.description.substring(0, 200) + "..."}
-                      </Typography>
-                    </Link>
-                  </CardContent>
-                </CardActionArea>
-              </Card>
-            );
-          })}
+                        <Typography>
+                          {data.events.startTime.substring(0, 10)}
+                        </Typography>
+                        <Typography
+                          variant="body2"
+                          color="textSecondary"
+                          component="p"
+                        >
+                          {data.events.description.substring(0, 200) + "..."}
+                        </Typography>
+                      </Link>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              );
+            })}
+          </Grid>
         </Grid>
         <Footer />
       </div>
