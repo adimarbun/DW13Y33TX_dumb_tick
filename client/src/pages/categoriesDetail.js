@@ -15,7 +15,6 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Link from "@material-ui/core/Link";
 import Fab from "@material-ui/core/Fab";
 import FavoriteIcon from "@material-ui/icons/Favorite";
-import IconButton from "@material-ui/core/IconButton";
 
 class CategoryDetail extends Component {
   componentDidMount() {

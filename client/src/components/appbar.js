@@ -194,8 +194,7 @@ export default function MenuAppBar() {
                 variant="outlined"
                 style={{
                   fontWeight: "bold",
-                  color: "white",
-                  marginRight: "40px"
+                  color: "white"
                 }}
               >
                 Register
@@ -205,8 +204,7 @@ export default function MenuAppBar() {
                 variant="outlined"
                 style={{
                   fontWeight: "bold",
-                  color: "white",
-                  marginRight: "40px"
+                  color: "white"
                 }}
               >
                 Login

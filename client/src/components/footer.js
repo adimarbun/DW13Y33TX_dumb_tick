@@ -8,15 +8,15 @@ class Footer extends Component {
   render() {
     return (
       <Grid container className="containerfooter">
-        <Grid xs="4">
+        <Grid className="gridparent">
           <div className="gridfooter">
             <Typography variant="h6">
               Tiketku is web-based paltform that provides tickets for varius
-              events around sports,music,science,programming
+              events around sports, music, science, programming
             </Typography>
           </div>
         </Grid>
-        <Grid xs="4">
+        <Grid className="gridparent">
           <div className="gridfooter">
             <Typography variant="h6">Links</Typography>
             <Typography variant="h6">Follow Us On</Typography>
@@ -30,7 +30,7 @@ class Footer extends Component {
             </Typography>
           </div>
         </Grid>
-        <Grid xs="4">
+        <Grid className="gridparent">
           <div className="gridfooter">
             <Typography variant="h6">Have a Question?</Typography>
             <Typography variant="h6">tiketku</Typography>

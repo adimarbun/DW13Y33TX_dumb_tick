@@ -1,7 +1,15 @@
-.gridfooter {
-  margin: 5% 20%;
-}
 .containerfooter {
   background-color: #f30b3d;
   color: aliceblue;
+  display: flex;
+}
+.gridparent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+}
+
+.gridfooter {
+  margin: 5%;
 }

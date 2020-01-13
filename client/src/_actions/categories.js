@@ -1,4 +1,4 @@
-import { GET_CATEGORIES, GET_CATEGORY } from "../config/constant";
+import { GET_CATEGORIES, GET_CATEGORY, URL_API } from "../config/constant";
 
 import axios from "axios";
 
@@ -7,7 +7,7 @@ export const getCategories = () => {
     type: GET_CATEGORIES,
     payload: axios({
       method: "GET",
-      url: "http://localhost:5000/api/v1/categories"
+      url: `${URL_API}api/v1/categories`
     })
   };
 };
@@ -17,7 +17,7 @@ export const getCategory = category_id => {
     type: GET_CATEGORY,
     payload: axios({
       method: "GET",
-      url: `http://localhost:5000/api/v1/category/${category_id}`
+      url: `${URL_API}api/v1/category/${category_id}`
     })
   };
 };

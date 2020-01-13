@@ -27,6 +27,7 @@ import {
   Grid
 } from "@material-ui/core";
 import Axios from "axios";
+import { URL_API } from "../config/constant";
 
 class EventsDetail extends Component {
   constructor(props) {
@@ -61,10 +62,10 @@ class EventsDetail extends Component {
       status: this.state.status,
       attachment: this.state.attachment
     };
-    console.log("ini");
+
     Axios({
       method: "POST",
-      url: "http://localhost:5000/api/v1/order",
+      url: `${URL_API}api/v1/order`,
       headers: {
         Authorization: `Bearer ${token}`
       },

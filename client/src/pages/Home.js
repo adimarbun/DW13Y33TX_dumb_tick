@@ -16,8 +16,8 @@ import Footer from "../components/footer";
 import Link from "@material-ui/core/Link";
 import Fab from "@material-ui/core/Fab";
 import FavoriteIcon from "@material-ui/icons/Favorite";
-import Divider from "@material-ui/core/Divider";
 import Axios from "axios";
+import { URL_API } from "../config/constant";
 
 class Home extends Component {
   constructor(props) {
@@ -36,7 +36,7 @@ class Home extends Component {
     alert("you like event");
     Axios({
       method: "post",
-      url: "http://localhost:5000/api/v1/favorit",
+      url: `${URL_API}api/v1/favorit`,
       headers: {
         Authorization: `Bearer ${token}`
       },

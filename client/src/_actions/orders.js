@@ -1,7 +1,8 @@
 import {
   GET_ORDER,
   GET_ORDER_PENDING,
-  GET_ORDER_APPROVED
+  GET_ORDER_APPROVED,
+  URL_API
 } from "../config/constant";
 import axios from "axios";
 
@@ -12,7 +13,7 @@ export const getOrder = order_id => {
     type: GET_ORDER,
     payload: axios({
       method: "GET",
-      url: `http://localhost:5000/api/v1/order/${order_id}`,
+      url: `${URL_API}api/v1/order/${order_id}`,
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -27,7 +28,7 @@ export const getOrderPending = () => {
     type: GET_ORDER_PENDING,
     payload: axios({
       method: "GET",
-      url: "http://localhost:5000/api/v1/orderPending",
+      url: `${URL_API}api/v1/orderPending`,
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -43,7 +44,7 @@ export const getOrderApproved = () => {
     type: GET_ORDER_APPROVED,
     payload: axios({
       method: "GET",
-      url: "http://localhost:5000/api/v1/orderApproved",
+      url: `${URL_API}api/v1/orderApproved`,
       headers: {
         Authorization: `Bearer ${token}`
       }

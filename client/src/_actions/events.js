@@ -1,13 +1,14 @@
-import { GET_EVENTS } from "../config/constant";
+import { GET_EVENTS, URL_API } from "../config/constant";
 
 import axios from "axios";
 
 export const getEvents = () => {
+  console.log(URL_API);
   return {
     type: GET_EVENTS,
     payload: axios({
       method: "GET",
-      url: "http://localhost:5000/api/v1/upComing"
+      url: `${URL_API}api/v1/upComing`
     })
   };
 };

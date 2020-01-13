@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import { getOrder, getOrderPending } from "../_actions/orders";
 import { Grid, Typography, Paper, Button } from "@material-ui/core";
 import Axios from "axios";
+import { URL_API } from "../config/constant";
 
 class PaymentPending extends Component {
   constructor(props) {
@@ -30,7 +31,7 @@ class PaymentPending extends Component {
       alert("thank you for you payment");
       Axios({
         method: "PUT",
-        url: `https://api-tiket-ku.herokuapp.com/api/v1/order/${orderId}`,
+        url: `${URL_API}api/v1/order/${orderId}`,
         headers: {
           Authorization: `Bearer ${token}`
         },

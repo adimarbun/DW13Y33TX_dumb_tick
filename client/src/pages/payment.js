@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import { getOrder } from "../_actions/orders";
 import { Grid, Typography, Paper, Button } from "@material-ui/core";
 import Axios from "axios";
+import { URL_API } from "../config/constant";
 
 class Payment extends Component {
   constructor(props) {
@@ -30,7 +31,7 @@ class Payment extends Component {
       alert("thank you for you payment");
       Axios({
         method: "PUT",
-        url: `http://localhost:5000/api/v1/order/${match.params.idOrder}`,
+        url: `${URL_API}api/v1/order/${match.params.idOrder}`,
         headers: {
           Authorization: `Bearer ${token}`
         },

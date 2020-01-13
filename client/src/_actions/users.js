@@ -1,4 +1,4 @@
-import { GET_USERS } from "../config/constant";
+import { GET_USERS, URL_API } from "../config/constant";
 
 import axios from "axios";
 
@@ -9,7 +9,7 @@ export const getUsers = () => {
     type: GET_USERS,
     payload: axios({
       method: "GET",
-      url: "http://localhost:5000/api/v1/user",
+      url: `${URL_API}api/v1/user`,
       headers: {
         Authorization: `Bearer ${token}`
       }

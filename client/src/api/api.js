@@ -1,8 +1,9 @@
 import axios from "axios";
+import { URL_API } from "../config/constant";
 
 export const register = newUser => {
   return axios
-    .post("http://localhost:5000/api/v1/register", {
+    .post(`${URL_API}api/v1/register`, {
       name: newUser.name,
       email: newUser.email,
       username: newUser.username,
@@ -20,7 +21,7 @@ export const register = newUser => {
 
 export const login = user => {
   return axios
-    .post("http://localhost:5000/api/v1/login", {
+    .post(`${URL_API}api/v1/login`, {
       username: user.username,
       password: user.password
     })
@@ -34,19 +35,3 @@ export const login = user => {
       console.log(err);
     });
 };
-
-// export const addEvent = newEvent => {
-//   return axios
-//     .post("http://localhost:5000/api/v1/event", {
-//       title: newEvent.title,
-//       category: newEvent.category,
-//       startTime: newEvent.startTime,
-//       endTime: newEvent.endTime,
-//       price: newEvent.price,
-//       description: newEvent.description,
-//       address: newEvent.address,
-//       urlMaps: newEvent.urlMaps,
-//       img: newEvent.img
-//     })
-//     .then();
-// };

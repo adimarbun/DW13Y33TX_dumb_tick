@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 import { Typography, Button, Grid, Paper, TextField } from "@material-ui/core";
 import MenuAppBar from "../components/appbar";
 import { connect } from "react-redux";
@@ -18,6 +17,7 @@ import EditProfil from "../components/editProfile";
 import Footer from "../components/footer";
 import { getUsers } from "../_actions/users";
 import { getFavorites } from "../_actions/favorites";
+import { URL_API } from "../config/constant";
 
 import Axios from "axios";
 
@@ -63,7 +63,7 @@ class Profil extends Component {
     console.log(data);
     Axios({
       method: "put",
-      url: "http://localhost:5000/api/v1/user",
+      url: `${URL_API}api/v1/user`,
       headers: {
         Authorization: `Bearer ${token}`
       },

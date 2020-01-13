@@ -3,7 +3,7 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import { categories, category } from "../_reducers/categories";
 import { events } from "../_reducers/events";
 import { users } from "../_reducers/users";
-import { event } from "../_reducers/event";
+import { event, addEvent } from "../_reducers/event";
 import { favorites } from "../_reducers/favorites";
 import { categoryEvent } from "../_reducers/categoryDetail";
 import { order, orderPending, orderApproved } from "../_reducers/orders";
@@ -14,6 +14,7 @@ const rootReducers = combineReducers({
   events,
   users,
   event,
+  addEvent,
   categoryEvent,
   category,
   favorites,

@@ -1,4 +1,4 @@
-import { GET_FAVORITES } from "../config/constant";
+import { GET_FAVORITES, URL_API } from "../config/constant";
 
 import axios from "axios";
 
@@ -9,7 +9,7 @@ export const getFavorites = () => {
     type: GET_FAVORITES,
     payload: axios({
       method: "GET",
-      url: "http://localhost:5000/api/v1/user/favorite",
+      url: `${URL_API}api/v1/user/favorite`,
       headers: {
         Authorization: `Bearer ${token}`
       }

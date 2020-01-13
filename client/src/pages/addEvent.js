@@ -6,12 +6,12 @@ import { connect } from "react-redux";
 import "../css/profil.css";
 import Footer from "../components/footer";
 import { getCategories } from "../_actions/categories";
+import { addEvent } from "../_actions/event";
 import TextField from "@material-ui/core/TextField";
-import MenuItem from "@material-ui/core/MenuItem";
-import { TextareaAutosize } from "@material-ui/core";
 
-import { addEvent } from "../api/api";
+import { TextareaAutosize } from "@material-ui/core";
 import Axios from "axios";
+import { URL_API } from "../config/constant";
 
 class AddEvent extends Component {
   constructor() {
@@ -39,9 +39,7 @@ class AddEvent extends Component {
   onSubmit = e => {
     e.preventDefault();
 
-    const token = localStorage.getItem("tokenn");
-
-    const data = {
+    const event = {
       title: this.state.title,
       category: this.state.category,
       startTime: this.state.startTime,
@@ -52,18 +50,7 @@ class AddEvent extends Component {
       urlMaps: this.state.urlMaps,
       img: this.state.img
     };
-
-    Axios({
-      method: "post",
-      url: "http://localhost:5000/api/v1/event",
-      headers: {
-        Authorization: `Bearer ${token}`
-      },
-      data
-    }).then(response => {
-      this.setState({ data: response.data, isLoading: false });
-      window.location = "/";
-    });
+    this.props.addEvent(event);
   };
   componentDidMount() {
     this.props.getCategories();
@@ -182,13 +169,17 @@ class AddEvent extends Component {
 
 const mapStateToProps = state => {
   return {
-    categories: state.categories
+    categories: state.categories,
+    addNewEvent: state.addEvent
   };
 };
 const mapDistpatchToProps = distpatch => {
   return {
     getCategories: () => {
       distpatch(getCategories());
+    },
+    addEvent: event => {
+      distpatch(addEvent(event));
     }
   };
 };
