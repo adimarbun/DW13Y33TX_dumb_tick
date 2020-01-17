@@ -3,6 +3,8 @@
 
 Untuk membeli atau membuat tiket(event) , User harus login terlebih dahulu
 
+untuk demo  bisa di liahat di www.tiketku.store
+
 # Screenshoot 
 
 ![screencapture-localhost-3000-2020-01-06-21_57_40](https://user-images.githubusercontent.com/57535407/71992754-7fc7a780-3268-11ea-869d-01bf3b93e195.png)
@@ -45,3 +47,7 @@ Back End
 
 - Telegram/WA : 0822 8499 1682
 - email : adigunawan1405@gmail.com
+
+# Website Portofolio
+
+www.tiketku.store
