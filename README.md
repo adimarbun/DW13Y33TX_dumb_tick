@@ -3,7 +3,7 @@
 
 Untuk membeli atau membuat tiket(event) , User harus login terlebih dahulu
 
-untuk demo  bisa di liahat di www.tiketku.store
+untuk demo  bisa di lihat di www.tiketku.store
 
 # Screenshoot 
 
