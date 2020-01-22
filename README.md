@@ -1,9 +1,9 @@
 # Keterangan Tiket-Ku Web
  Nama Web ini adalah Tiket-Ku ,Platform berbasis web yang menyediakan  tiket untuk berbagai acara seperti olahraga,musik,sains, dan pemrograman.
 
-Untuk membeli atau membuat tiket(event) , User harus login terlebih dahulu
-
-untuk demo  bisa di lihat di www.tiketku.store
+- Untuk membeli atau membuat tiket(event) , User harus login terlebih dahulu
+- Untuk upload gambar masih menggunakan url
+- untuk demo  bisa di lihat di www.tiketku.store
 
 # Screenshoot 
 
